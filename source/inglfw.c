@@ -25,16 +25,16 @@ static void pushevent(union input in, uint8_t flags)
 }
 
 
-static int popevent(union input *in, uint8_t *flags)
+static bool popevent(union input *in, uint8_t *flags)
 {
 	if(head != tail) {
 		*in    = q_in[tail];
 		*flags = q_fl[tail];
 		tail   = (tail + 1) & (MAX_EVENTS - 1);
-		return 1;
+		return true;
 
 	} else {
-		return 0;
+		return false;
 	}
 }
 
@@ -149,15 +149,14 @@ uint64_t getticks(void)
 }
 
 
-int pollevent(union input *in, uint8_t *flags)
+bool pollevent(union input *in, uint8_t *flags)
 {
 	(void)in;
-
 	glfwPollEvents();
 
 	if(glfwWindowShouldClose(window)) {
 		*flags = IN_QUIT;
-		return 1;
+		return true;
 	}
 
 	return popevent(in, flags);

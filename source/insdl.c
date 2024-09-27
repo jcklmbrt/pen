@@ -8,15 +8,13 @@ uint64_t getticks(void)
 }
 
 
-int pollevent(union input *in, uint8_t *flags)
+bool pollevent(union input *in, uint8_t *flags)
 {
 	int ret;
 	SDL_Event sdlevent;
 	*flags = IN_NONE;
-	if((ret = SDL_PollEvent(&sdlevent)))
-	{
-		switch(sdlevent.type)
-		{
+	if((ret = SDL_PollEvent(&sdlevent))) {
+		switch(sdlevent.type) {
 		case SDL_QUIT:
 			*flags = IN_QUIT;
 			break;
@@ -70,5 +68,5 @@ int pollevent(union input *in, uint8_t *flags)
 			break;
 		}
 	}
-	return ret;
+	return ret == 1;
 }

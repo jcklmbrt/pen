@@ -3,10 +3,8 @@
 #define NOMINMAX
 #include <windows.h>
 #include <gl/GL.h>
-#include <gl/GLU.h>
 #else
 #include <GL/gl.h>
-#include <GL/glu.h>
 #endif
 
 #include <GLFW/glfw3.h>
@@ -28,7 +26,7 @@ static void framebuffer_size_callback(GLFWwindow *w, int width, int height)
 	glViewport(0, 0, width, height);
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	gluOrtho2D(0, (GLdouble)width, (GLdouble)height, 0);
+	glOrtho(0, (GLdouble)width, (GLdouble)height, 0, -1.0, 1.0);
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 }

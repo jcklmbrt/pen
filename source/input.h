@@ -1,6 +1,7 @@
 #ifndef _INCLUDE_INPUT_H
 #define _INCLUDE_INPUT_H
 
+#include <stdbool.h>
 #include <stdint.h>
 
 union input {
@@ -30,7 +31,7 @@ enum inflag {
 	IN_UP     = 1 << 6,
 };
 
-int      pollevent(union input *in, uint8_t *flags);
+bool     pollevent(union input *in, uint8_t *flags);
 uint64_t getticks(void);
 
 #endif
