@@ -45,7 +45,7 @@ int main(int argc, char **argv)
 
 	float dt;
 
-	if(rinit(":)") != 0) {
+	if(!rinit("pen")) {
 		goto end;
 	}
 

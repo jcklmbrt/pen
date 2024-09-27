@@ -2,6 +2,8 @@
 #ifndef _INCLUDE_RENDERER_H
 #define _INCLUDE_RENDERER_H
 
+#include <stdbool.h>
+
 #include <font.h>
 
 #define R_MAX_TEXT     1024
@@ -22,7 +24,7 @@ extern color_t gray;
 extern color_t yellow;
 
 /* platform specific functions defined in r<impl>.c */
-int  rinit(const char *title);
+bool rinit(const char *title);
 void rfree(void);
 void rsize(float *w, float *h);
 void rclear(color_t color);

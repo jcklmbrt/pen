@@ -1,4 +1,6 @@
 #include <stdbool.h>
+#include <stddef.h>
+
 #include <polybezier.h>
 #include <trans.h>
 #include <ent.h>

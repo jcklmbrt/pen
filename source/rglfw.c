@@ -89,10 +89,10 @@ void mouse_button_callback(GLFWwindow *window, int button, int action, int mods)
 void scroll_callback(GLFWwindow *window, double xoffset, double yoffset);
 void cursor_position_callback(GLFWwindow *window, double xpos, double ypos);
 
-int rinit(const char *title)
+bool rinit(const char *title)
 {
 	if(glfwInit() != GLFW_TRUE) {
-		return -1;
+		return false;
 	}
 
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 2);
@@ -103,7 +103,7 @@ int rinit(const char *title)
 	window = glfwCreateWindow(1280, 720, title, NULL, NULL);
 	if(window == NULL) {
 		glfwTerminate();
-		return -1;
+		return false;
 	}
 
 	glfwMakeContextCurrent(window);
@@ -165,12 +165,13 @@ int rinit(const char *title)
 
 		free(rgba);
 	}
-	return 0;
+	return true;
 bad:
 	glfwDestroyWindow(window);
 	glfwTerminate();
-	return -1;
+	return false;
 }
+
 
 void rfree(void)
 {

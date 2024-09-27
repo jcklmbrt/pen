@@ -29,6 +29,7 @@ void rtris(color_t color, float *positions, int num_positions,
 	    indices, num_indices, 4);
 }
 
+
 void rtextries(int texid,
     color_t color, float *positions, float *tex_coords,
     int num_vertices, int *indices, int num_indices)
@@ -41,18 +42,21 @@ void rtextries(int texid,
 		num_vertices, indices, num_indices, 4);
 }
 
+
 void rclear(color_t color)
 {
 	SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, color.a);
 	SDL_RenderClear(renderer);
 }
 
+
 void rpresent(void)
 {
 	SDL_RenderPresent(renderer);
 }
 
-int rinit(const char *title)
+
+bool rinit(const char *title)
 {
 	if(SDL_Init(SDL_INIT_VIDEO) != 0) {
 		goto bad_sdl;
@@ -110,14 +114,14 @@ int rinit(const char *title)
 		fontimpl[fid] = t;
 		free(rgba);
 	}
-	return 0;
+	return true;
 bad_sdl:
 	fprintf(stderr, "\n%s\n", SDL_GetError());
 bad:
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);
 	SDL_Quit();
-	return -1;
+	return false;
 }
 
 void rfree(void)
