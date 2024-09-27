@@ -2,10 +2,13 @@
 #define WIN32_LEAN_AND_MEAN
 #define NOMINMAX
 #include <windows.h>
-#endif
-
 #include <gl/GL.h>
 #include <gl/GLU.h>
+#else
+#include <GL/gl.h>
+#include <GL/glu.h>
+#endif
+
 #include <GLFW/glfw3.h>
 
 #include <stdlib.h>
