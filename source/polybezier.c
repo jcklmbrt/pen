@@ -343,13 +343,17 @@ void cbplot(float p[4][2], float thickness, color_t color)
 {
 	const float epsilon = 0.01f; /* smallest possible step */
 	const float mindp   = 0.99f; /* smallest dot product beteen 2 normals */
-	float t = 0.0f;
+	/* pbderiv will give us {0, 0} for t=0,t=1
+	   resulting in a div by 0 error. */
+	const float start = 0.01f;
+	const float end   = 0.99f;
+	float t = start;
 	float cur_point[2],  lst_point[2];
 	float cur_normal[2], lst_normal[2];
-	while(t <= 1.0f) {
+	while(t <= end) {
 		cbinterp(p, t, cur_point);
 		cbnorm(p, t, cur_normal);
-		if(t != 0.0f) {
+		if(t != start) {
 			float quad[4][2];
 			float scale = thickness * 0.5f;
 			for(int i = 0; i < 2; i++) {
@@ -361,7 +365,7 @@ void cbplot(float p[4][2], float thickness, color_t color)
 			rquad(quad, color);
 		}
 		/* last iter, step no further */
-		if(t >= 1.0f) {
+		if(t >= end) {
 			break;
 		}
 		for(int i = 0; i < 2; i++) {
@@ -369,7 +373,7 @@ void cbplot(float p[4][2], float thickness, color_t color)
 			lst_normal[i] = cur_normal[i];
 		}
 		float delta = (1.0f - t) * 0.5f;
-		while(t + delta <= 1.0f) {
+		while(t + delta <= end) {
 			cbnorm(p, t + delta, cur_normal);
 			if(cur_normal[0] * lst_normal[0] +
 			   cur_normal[1] * lst_normal[1] > mindp) {
