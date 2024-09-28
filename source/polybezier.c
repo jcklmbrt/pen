@@ -343,10 +343,8 @@ void cbplot(float p[4][2], float thickness, color_t color)
 {
 	const float epsilon = 0.01f; /* smallest possible step */
 	const float mindp   = 0.99f; /* smallest dot product beteen 2 normals */
-	/* pbderiv will give us {0, 0} for t=0,t=1
-	   resulting in a div by 0 error. */
-	const float start = 0.01f;
-	const float end   = 0.99f;
+	const float start   = 0.0f + FLT_EPSILON;
+	const float end     = 1.0f - FLT_EPSILON;
 	float t = start;
 	float cur_point[2],  lst_point[2];
 	float cur_normal[2], lst_normal[2];

@@ -56,6 +56,7 @@ math
 polybezier
   + move along curve at a fixed speed
   - cache normals for rotation?
+  - rewrite cbplot
 entity 
   + add entity system
   - add classes of entities
