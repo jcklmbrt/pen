@@ -6,6 +6,7 @@ Pen: a game based on the photoshop pen tool
 > : not implementing (with comment)
 
 error handling
+  - add more asserts throughout the codebase.
   - all over the codebase I use int instead of bool. I should stop that.
        for some cases it makes sense, 
        e.g. rprintf returning either number of chars or negative number for error
