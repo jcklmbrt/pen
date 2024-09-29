@@ -35,7 +35,7 @@ static void framebuffer_size_callback(GLFWwindow *w, int width, int height)
 void rsize(float *w, float *h)
 {
 	int iw, ih;
-	glfwGetWindowSize(window, &iw, &ih);
+	glfwGetFramebufferSize(window, &iw, &ih);
 	*w = (float)iw;
 	*h = (float)ih;
 }
@@ -114,16 +114,12 @@ bool rinit(const char *title)
 	glfwSetScrollCallback(window, scroll_callback);
 	glfwSetCursorPosCallback(window, cursor_position_callback);
 
-	framebuffer_size_callback(window, 1280, 720);
+	int w, h;
+	glfwGetFramebufferSize(window, &w, &h);
+	framebuffer_size_callback(window, w, h);
 
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	glDisable(GL_CULL_FACE);
-	glDisable(GL_DEPTH_TEST);
-	glDisable(GL_STENCIL_TEST);
-	glDisable(GL_LIGHTING);
-	glDisable(GL_COLOR_MATERIAL);
-	glEnable(GL_SCISSOR_TEST);
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
