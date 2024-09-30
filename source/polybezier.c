@@ -317,7 +317,7 @@ float pblen(void)
 }
 
 
-int pbinterp(float t, float out[2])
+bool pbinterp(float t, float out[2])
 {
 	struct node *n;
 	float targetlen = t * pblen();
@@ -330,12 +330,12 @@ int pbinterp(float t, float out[2])
 				float frac = n->cachesize * nt - (float)i;
 				out[0] = lerp(n->cache[i][0], n->cache[i + 1][0], frac);
 				out[1] = lerp(n->cache[i][1], n->cache[i + 1][1], frac);
-				return 1;
+				return true;
 			}
 			curlen += n->len;
 		}
 	}
-	return 0;
+	return false;
 }
 
 
@@ -389,7 +389,7 @@ void cbplot(float p[4][2], float thickness, color_t color)
 static const float point_radius = 10.0f;
 static const float ctrl_radius  = 10.0f;
 
-static int lmousedown(float pos[2])
+static bool lmousedown(float pos[2])
 {
 	struct node *n;
 	for(n = head; n != NULL; n = n->next) {
@@ -399,25 +399,25 @@ static int lmousedown(float pos[2])
 					selected = n;
 					pbflags &= ~PB_SELECT_MASK;
 					pbflags |= i & PB_SELECT_MASK;
-					return 1;
+					return true;
 				}
 			}
 		}
 		if(v2dlt(n->point, pos, point_radius / gscale())) {
 			selected = n;
-			return 1;
+			return true;
 		}
 	}
 	/* pbadd will set selected to the new node. */
 	if(pbadd(pos) == 0) {
 		cachenode(selected);
-		return 1;
+		return true;
 	}
-	return 0;
+	return false;
 }
 
 
-static int rmousedown(float pos[2])
+static bool rmousedown(float pos[2])
 {
 	struct node *n;
 	for(n = head; n != NULL; n = n->next) {
@@ -428,17 +428,17 @@ static int rmousedown(float pos[2])
 			if(prev != NULL) {
 				cachenode(prev);
 			}
-			return 1;
+			return true;
 		}
 	}
-	return 0;
+	return false;
 }
 
 
-static int lmousemove(float pos[2])
+static bool lmousemove(float pos[2])
 {
 	if(selected == NULL) {
-		return 0;
+		return false;
 	}
 	float d[2];
 	unsigned int i;
@@ -467,14 +467,14 @@ static int lmousemove(float pos[2])
 		break;
 	}
 	cachenode(selected);
-	return 1;
+	return true;
 }
 
 
-int pbinput(union input *in, uint8_t flags)
+bool pbinput(union input *in, uint8_t flags)
 {
 	if(!(pbflags & PB_EDIT) || !(flags & IN_MOUSE)) {
-		return 0;
+		return false;
 	}
 	float wp[2];
 	s2w(in->mpos, wp);
@@ -493,7 +493,7 @@ int pbinput(union input *in, uint8_t flags)
 	default:
 		break;
 	}
-	return 0;
+	return false;
 }
 
 

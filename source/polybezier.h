@@ -3,15 +3,16 @@
 
 
 #include <stdint.h>
+#include <stdbool.h>
 
 
 union input;
 
 
 void  pbfree(void);
-int   pbinput(union input *in, uint8_t flags);
+bool  pbinput(union input *in, uint8_t flags);
 void  pbdraw(void);
-int   pbinterp(float t, float out[2]);
+bool  pbinterp(float t, float out[2]);
 float pblen(void);
 
 
