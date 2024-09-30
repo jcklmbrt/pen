@@ -131,8 +131,8 @@ int rprintf(int fid, float x, float y, color_t color, const char *fmt, ...)
 	if(len < 0) {
 		return len;
 	}
-	x = floorf(x); 
-	y = floorf(y);
+	x = roundf(x); 
+	y = roundf(y);
 	struct font *f = &fontdata[fid];
 	switch(f->flags & FONTSTYLE_MASK)
 	{
