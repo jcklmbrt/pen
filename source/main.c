@@ -1,6 +1,8 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <stdint.h>
+#include <time.h>
+
 #include <input.h>
 #include <r.h>
 #include <ent.h>
@@ -45,6 +47,8 @@ int main(int argc, char **argv)
 
 	float dt;
 
+	srand(time(NULL));
+
 	if(!rinit("pen")) {
 		goto end;
 	}
@@ -67,6 +71,9 @@ int main(int argc, char **argv)
 					case '\r':
 					case '\n':
 						break;
+					case 'R':
+					case 'r':
+						pbfree();
 					}
 				}
 				break;
@@ -78,6 +85,7 @@ int main(int argc, char **argv)
 			}
 		}
 		rclear(gray);
+		lvldraw();
 		pbdraw();
 		entdraw();
 		entmv(dt);

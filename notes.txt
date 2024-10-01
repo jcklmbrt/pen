@@ -19,6 +19,7 @@ directory structure
 r
   + improve texture handle system 
   + improve color constants
+  - consistent use of r<thing>, <thing>draw naming convention
 sdl
   + sdl backend
 glfw
@@ -53,7 +54,6 @@ trans
   ? 3x3 matrix, OpenGL integration.
 math
   - separate math code from trans.c
-  - better function naming
 polybezier
   + move along curve at a fixed speed
   - cache normals for rotation?
