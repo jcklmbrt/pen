@@ -117,12 +117,12 @@ static float minlensqr(struct node *n, float point[2])
 }
 
 
-int pbadd(float point[2])
+static bool pbadd(float point[2])
 {
 	struct node *n;
 	n = malloc(sizeof(struct node));
 	if(n == NULL) {
-		return -1;
+		return false;
 	}
 	n->prev = NULL;
 	n->next = NULL;
@@ -169,7 +169,7 @@ int pbadd(float point[2])
 			}
 		}
 	}
-	return 0;
+	return true;
 }
 
 
@@ -213,7 +213,7 @@ static void cbnorm(float p[4][2], float t, float out[2])
 }
 
 
-static int cbseg(float p[4][2], float t[2], float targetlen, float out[2])
+static bool cbseg(float p[4][2], float t[2], float targetlen, float out[2])
 {
 	const float epsilon = 0.01f;
 	float point[2];
@@ -229,7 +229,7 @@ static int cbseg(float p[4][2], float t[2], float targetlen, float out[2])
 			t[0]   = mid;
 			out[0] = point[0];
 			out[1] = point[1];
-			return 0;
+			return false;
 		}
 		if(len > targetlen) {
 			hi = mid;
@@ -237,7 +237,7 @@ static int cbseg(float p[4][2], float t[2], float targetlen, float out[2])
 			lo = mid;
 		}
 	}
-	return 1;
+	return true;
 }
 
 
@@ -256,7 +256,7 @@ static int split(float p[4][2], float length, float out[][2], int n)
 }
 
 
-static int pb2cb(struct node *n, float p[4][2])
+static bool pb2cb(struct node *n, float p[4][2])
 {
 	if(n->next != NULL) {
 		for(int i = 0; i < 2; i++) {
