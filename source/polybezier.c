@@ -409,7 +409,7 @@ static bool lmousedown(float pos[2])
 		}
 	}
 	/* pbadd will set selected to the new node. */
-	if(pbadd(pos) == 0) {
+	if(pbadd(pos)) {
 		cachenode(selected);
 		return true;
 	}
