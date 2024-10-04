@@ -82,39 +82,38 @@ void entmv(float dt)
 }
 
 
-void lvldraw()
+void raabb(float aabb[2][2], color_t color)
+{
+	float mins[2];
+	float maxs[2];
+
+	w2s(aabb[0], mins);
+	w2s(aabb[1], maxs);
+
+	rrect(mins[0],  mins[1],
+	      maxs[0] - mins[0],
+	      maxs[1] - mins[1],
+	      color);
+}
+
+
+void lvldraw(void)
 {
 	float start[2][2];
 	float end[2][2];
 
 	start[0][0] = 100.0f;
 	start[0][1] = 100.0f;
-	start[1][0] = 300.0f;
-	start[1][1] = 300.0f;
+	start[1][0] = 200.0f;
+	start[1][1] = 200.0f;
 
-	end[0][0] = 400.0f;
-	end[0][1] = 400.0f;
-	end[1][0] = 500.0f;
-	end[1][1] = 500.0f;
+	end[0][0] = 300.0f;
+	end[0][1] = 100.0f;
+	end[1][0] = 400.0f;
+	end[1][1] = 200.0f;
 
-	float mins[2];
-	float maxs[2];
-
-	w2s(start[0], mins);
-	w2s(start[1], maxs);
-
-	rrect(mins[0],  mins[1], 
-	      maxs[0] - mins[0], 
-	      maxs[1] - mins[1], 
-	      green);
-
-	w2s(end[0], mins);
-	w2s(end[1], maxs);
-
-	rrect(mins[0],  mins[1], 
-	      maxs[0] - mins[0], 
-	      maxs[1] - mins[1], 
-	      red);
+	raabb(start, green);
+	raabb(end, red);
 }
 
 
