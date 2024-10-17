@@ -33,8 +33,8 @@ void rsize(float *w, float *h);
 void rclear(color_t color);
 void rpresent(void);
 void rtris(color_t color, float *positions, int num_positions, int *indices, int num_indices);
-void rtextries(int texid, color_t color, float *positions, float *tex_coords,
-               int num_vertices, int *indices, int num_indices);
+void rtextris(int texid, color_t color, float *positions, float *tex_coords,
+              int num_vertices, int *indices, int num_indices);
 
 
 /* primitives, defined in r.c */

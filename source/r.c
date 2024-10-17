@@ -116,7 +116,7 @@ static void rtext(int fid, float x, float y, color_t color, const char *msg, int
 		idx[i][5] = i * 4 + 2;
 		x += f->width;
 	}
-	rtextries(fid, color, (float *)vtx, (float *)uvs, len * 4, (int *)idx, len * 6);
+	rtextris(fid, color, (float *)vtx, (float *)uvs, len * 4, (int *)idx, len * 6);
 }
 
 
