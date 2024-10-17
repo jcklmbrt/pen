@@ -3,11 +3,10 @@
 
 #include <r.h>
 
-#define MAX_ENTITIES 64
-
+#define MAX_ENTITIES 1024
 
 struct ent {
-	/* position and velocity are scalar 
+	/* position and velocity are scalar
 	   as we are moving along a line */
 	float   pos;
 	float   vel;
@@ -16,16 +15,11 @@ struct ent {
 };
 
 
-struct lvl {
-	float start[2][2];
-	float end[2][2];
-};
-
-
 void entmv(float dt);
-bool entadd(void);
+void lvlmv(float dt);
 void lvldraw(void);
 void entdraw(void);
+bool entadd(void);
 
 
 #endif

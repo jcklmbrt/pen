@@ -89,6 +89,7 @@ int main(int argc, char **argv)
 		pbdraw();
 		entdraw();
 		entmv(dt);
+		lvlmv(dt);
 #ifndef NDEBUG
 		rdbg(fps);
 #endif

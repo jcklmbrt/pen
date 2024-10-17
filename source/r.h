@@ -6,7 +6,7 @@
 
 #include <font.h>
 
-#define R_MAX_TEXT     1024
+#define R_MAX_TEXT     256
 #define R_CIRCLE_STEPS 32
 
 

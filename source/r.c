@@ -86,8 +86,8 @@ void rcircle(float x, float y, float r, color_t color)
 	vtx[R_CIRCLE_STEPS][0] = x;
 	vtx[R_CIRCLE_STEPS][1] = y;
 	for(int i = 0; i < steps; i++) {
-		vtx[i][0] = x + sinf(i * step) * r;
-		vtx[i][1] = y + cosf(i * step) * r;
+		vtx[i][0] = x + cosf(i * step) * r;
+		vtx[i][1] = y + sinf(i * step) * r;
 		/* think of pizza slices */
 		idx[i][0] = steps;
 		idx[i][1] = i;
