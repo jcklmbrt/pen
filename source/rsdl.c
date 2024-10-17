@@ -22,17 +22,17 @@ void rsize(float *w, float *h)
 
 
 void rtris(color_t color, float *positions, int num_positions,
-    int *indices, int num_indices)
+	int *indices, int num_indices)
 {
 	SDL_RenderGeometryRaw(renderer, NULL, positions,
-	    sizeof(float) * 2, (SDL_Color *)&color, 0, NULL, 0, num_positions,
-	    indices, num_indices, 4);
+		sizeof(float) * 2, (SDL_Color *)&color, 0, NULL, 0, num_positions,
+		indices, num_indices, 4);
 }
 
 
-void rtextries(int texid,
-    color_t color, float *positions, float *tex_coords,
-    int num_vertices, int *indices, int num_indices)
+void rtextris(int texid,
+	color_t color, float *positions, float *tex_coords,
+	int num_vertices, int *indices, int num_indices)
 {
 	SDL_Texture *t = fontimpl[texid];
 	SDL_RenderGeometryRaw(renderer, t,

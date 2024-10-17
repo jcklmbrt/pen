@@ -52,7 +52,7 @@ void rtris(color_t color, float *positions, int num_positions,
 
 }
 
-void rtextries(int texid,
+void rtextris(int texid,
 	color_t color, float *positions, float *tex_coords,
 	int num_vertices, int *indices, int num_indices)
 {
