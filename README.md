@@ -8,8 +8,8 @@ A composite cubic bézier curve editor
 - Event queue
 - Bitmap font renderer
 - Zooming and panning
-- Distance calculation: 
-- Interpolation: allowing for accurate curve subdivision
+- Distance calculation
+- Interpolation
 
 ## Usage
 - Click to set points on the canvas
