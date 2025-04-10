@@ -509,9 +509,8 @@ void pbdraw(void)
 			w2s(n->ctrl[1], sctrl[1]);
 			if(n == selected) {
 				for(int i = 0; i < 2; i++) {
-					rline(sp[0], sp[1], sctrl[i][0], sctrl[i][1], 1.0f, black);
-					rcircle(sctrl[i][0], sctrl[i][1], 4.0f, black);
-					//rcircle(sctrl[i][0], sctrl[i][1], 2.0f, black);
+					rline(sp[0], sp[1], sctrl[i][0], sctrl[i][1], 2.0f, blacktrans);
+					rcircle(sctrl[i][0], sctrl[i][1], 4.0f, green);
 				}
 			}
 		}
@@ -524,8 +523,12 @@ void pbdraw(void)
 				w2s(wp[i], sp[i]);
 			}
 			if(pbflags & PB_EDIT) {
-				//cbplot(sp, 3.0f, blacktrans);
-				cbplot(sp, 2.0f, black);
+				cbplot(sp, 4.0f, blacktrans);
+				if(n == selected) {
+					cbplot(sp, 2.0f, pink);
+				} else {
+					cbplot(sp, 2.0f, white);
+				}
 			} else {
 				cbplot(sp, 5.0f, blacktrans);
 				cbplot(sp, 4.0f, white);
@@ -537,13 +540,26 @@ void pbdraw(void)
 		for(n = head; n != NULL; n = n->next) {
 			float sp[2];
 			w2s(n->point, sp);
-			rrect(sp[0] - 4.0f, sp[1] - 4.0f, 8.0f, 8.0f, black);
-			//
+			rcircle(sp[0], sp[1], 6.0f, black);
+			
 			if(n == selected) {
-				//
+				rcircle(sp[0], sp[1], 4.0f, ltblue);
 			} else {
-				//
+				rcircle(sp[0], sp[1], 4.0f, darkblue);
 			}
+
+			int y = 0;
+			sp[0] += 4.0f;
+			sp[1] += 4.0f;
+			
+			rprintf(TERMINUS_6x12, sp[0], sp[1] + y++ * 12.0f, white, "point: %.1f, %1.f", n->point[0], n->point[1]);
+			if(n->next) {
+				rprintf(TERMINUS_6x12, sp[0], sp[1] + y++ * 12.0f, white, "distance to next %.1f", n->len);
+			}
+			if(n->prev) {
+				rprintf(TERMINUS_6x12, sp[0], sp[1] + y++ * 12.0f, white, "distance to prev %.1f", n->prev->len);
+			}
+
 		}
 	}
 }

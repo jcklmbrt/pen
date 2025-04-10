@@ -3,12 +3,11 @@
 #include <stdint.h>
 #include <time.h>
 
-#include <input.h>
-#include <r.h>
-#include <ent.h>
-#include <polybezier.h>
-#include <font.h>
-#include <trans.h>
+#include "input.h"
+#include "r.h"
+#include "polybezier.h"
+#include "font.h"
+#include "trans.h"
 
 
 /* call every frame. */
@@ -36,7 +35,8 @@ int framerate(bool newframe, float *dt)
 
 static void rdbg(int fps)
 {
-	rprintf(TERMINUS_8x16, 25.0f, 25.0f, white, "Hello World  FPS: %d", fps);
+	rprintf(TERMINUS_8x16, 25.0f, 25.0f + (16.0f * 0), white, "Frames Per Second: %d", fps);
+	rprintf(TERMINUS_8x16, 25.05, 25.0f + (16.0f * 1), white, "PolyBezier Length: %.1f", pblen());
 }
 
 
@@ -62,21 +62,6 @@ int main(int argc, char **argv)
 			switch(flags & IN_BASE) {
 			case IN_QUIT:
 				goto end;
-			case IN_KEY:
-				if(!(flags & IN_UP)) {
-					switch(in.keycode) {
-					case ' ':
-						entadd();
-						break;
-					case '\r':
-					case '\n':
-						break;
-					case 'R':
-					case 'r':
-						pbfree();
-					}
-				}
-				break;
 			case IN_MOUSE:
 			case IN_SCROLL:
 				transinput(&in, flags);
@@ -85,11 +70,7 @@ int main(int argc, char **argv)
 			}
 		}
 		rclear(gray);
-		lvldraw();
 		pbdraw();
-		entdraw();
-		entmv(dt);
-		lvlmv(dt);
 #ifndef NDEBUG
 		rdbg(fps);
 #endif

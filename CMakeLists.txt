@@ -4,7 +4,10 @@ set(CMAKE_C_STANDARD 99)
 
 add_executable(pen)
 
-option(USE_GLFW "glfw backend" OFF)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
+# use glfw by default
+option(USE_GLFW "glfw backend" ON)
 option(USE_SDL2 "sdl2 backend" OFF)
 
 target_include_directories(pen PUBLIC 
@@ -36,7 +39,6 @@ endif()
 
 target_sources(pen PRIVATE 
 	"source/main.c" 
-	"source/ent.c" 
 	"source/r.c" 
 	"source/trans.c"  
 	"source/polybezier.c" 
