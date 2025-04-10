@@ -1,5 +1,6 @@
 # Pen
 A composite cubic bézier curve editor
+
 ![Screen Shot](resource/img/screenshot.png)
 ## Features
 - GLFW3 + OpenGL 2.0 Backend
