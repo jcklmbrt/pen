@@ -17,6 +17,10 @@ A composite cubic bézier curve editor
 - Right click on a point to delete it
 
 ## Building the project
+Depending on whether you are using SDL2 or GLFW3, make sure that you have the dependencies required to build that library:
+- https://www.glfw.org/docs/latest/compile.html
+- https://github.com/libsdl-org/SDL/blob/main/docs/README-linux.md
+- https://github.com/libsdl-org/SDL/blob/main/docs/INTRO-mingw.md
 ```bash
 $ git clone --recurse-submodules https://github.com/jcklmbrt/pen.git
 $ mkdir pen/build
