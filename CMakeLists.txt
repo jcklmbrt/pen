@@ -6,8 +6,7 @@ add_executable(pen)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-# use glfw by default
-option(USE_GLFW "glfw backend" ON)
+option(USE_GLFW "glfw backend" OFF)
 option(USE_SDL2 "sdl2 backend" OFF)
 
 target_include_directories(pen PUBLIC 
